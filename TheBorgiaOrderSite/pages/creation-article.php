@@ -7,7 +7,7 @@
 	</head>
 
 	<body>
-		<form method="post" action="Creanew.php" enctype="multipart/form-data" >
+		<form method="post" action="creation-article.php" enctype="multipart/form-data" >
 
 		 <label class="titreL"> Le titre  </label>
 			<input type="texte" name="titre" for="titreL" value= <?php echo '"'.@$_POST['titre'].'"'; ?>>
@@ -42,7 +42,7 @@ if(isset($_POST['titre']) and $_POST['titre'] != NULL ){
 
 			if ( isset($_FILES['image']) and $_FILES['image']['error'] == 0 and $_FILES['image']['size'] <= 2000000){
 
-					 move_uploaded_file($_FILES['image']['tmp_name'], 'news/image/' . basename($_FILES['image']['name']));
+					 move_uploaded_file($_FILES['image']['tmp_name'], 'previsualisation/image/' . basename($_FILES['image']['name']));
 
 						$titre =$_POST['titre'];
 						$auteur = $_POST['auteur'];
@@ -51,7 +51,7 @@ if(isset($_POST['titre']) and $_POST['titre'] != NULL ){
 
 
 
-						$monfichier = fopen('news/'.$titre.'.php', 'a+');
+						$monfichier = fopen('previsualisation/'.$titre.'.php', 'a+');
 						fputs($monfichier,'
 
 
@@ -87,7 +87,7 @@ if(isset($_POST['titre']) and $_POST['titre'] != NULL ){
 
 						fclose($monfichier);
 
-						$chemin = "news/".$titre ;
+						$chemin = "previsualisation/".$titre ;
 						$chemin = '"'.$chemin.'"';
 						
 
