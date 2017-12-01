@@ -12,7 +12,7 @@
 		 <label class="titreL"> Le titre  </label>
 			<input type="texte" name="titre" for="titreL" value= <?php echo '"'.@$_POST['titre'].'"'; ?>>
 
-		<label class="imageL"> images  </label>
+		<label class="imageL"> image  </label>
 			<input type="file" name="image" for="imageL">
 
 		<label class="auteurL"> Auteur  </label>
