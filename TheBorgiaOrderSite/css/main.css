@@ -26,11 +26,6 @@ a:visited {
 
 /*Menue Navigation Entier*/
 
-.nav {
-	display: inline;
-	margin: 1em;
-	font-size: 25px;
-}
 
 #nav {
 	margin-left: 2.85%;
@@ -115,6 +110,8 @@ a:visited {
 }
 
 .logo {
+	max-height: 271px;
+	max-width: 158px;
 	margin: 0.6em;
 	float: left;
 }
