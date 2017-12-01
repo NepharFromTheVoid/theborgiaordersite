@@ -9,7 +9,7 @@
 /*Structure répétitive*/
 
 body {
-	margin: 0;
+	margin: auto;
 	font-family: news;
 	background-color: #d3d3d3;
 }
@@ -60,15 +60,17 @@ a:visited {
 
 .corp {
 	/*Ceci est pour le coeur de page*/
-	overflow-x: scroll;
 	margin-top: 0;
 	padding-top: 12%;
 	margin-left: 16%;
 	margin-right: 16%;
+	margin-bottom: auto;
 	background-color: white;
 	border-style: double;
 	border-color: black;
 	border-width: 5px;
+	max-width: 1285px;
+	min-width: 600px;
 }
 
 .floating-box {
