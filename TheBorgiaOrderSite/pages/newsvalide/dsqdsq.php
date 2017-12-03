@@ -4,18 +4,18 @@
 							<!DOCTYPE html>
 						<html>
 								<head>
-									<title>fdgdfg</title>
+									<title>dsqdsq</title>
 								</head>
 
 							<body>
 
-								<p class = "titre">fdgdfg</p>
+								<p class = "titre">dsqdsq</p>
 								<br>
-								<p class = "texte">fdhgwefdgdf</p>
+								<p class = "texte">qsdqsdqsd</p>
 								<br>
-								<img class = "logo" src="image/Koala.jpg "  >
+								<img class = "logo" src="image/Hydrangeas.jpg "  >
 								<br>
-								<p class = "auteur">sdfdsf</p> 
+								<p class = "auteur">sqdqsdq</p> 
 
 								<?php 
 
@@ -27,6 +27,10 @@
 							</body>
 
 						</html>
+
+
+
+						
 
 
 							

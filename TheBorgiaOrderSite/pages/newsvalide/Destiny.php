@@ -4,18 +4,18 @@
 							<!DOCTYPE html>
 						<html>
 								<head>
-									<title>qsd</title>
+									<title>Destiny</title>
 								</head>
 
 							<body>
 
-								<p class = "titre">qsd</p>
+								<p class = "titre">Destiny</p>
 								<br>
-								<p class = "texte">qsdqsd</p>
+								<p class = "texte">Ceci est un texte</p>
 								<br>
-								<img class = "logo" src="image/Jellyfish.jpg "  >
+								<img class = "logo" src="image/Hydrangeas.jpg "  >
 								<br>
-								<p class = "auteur">qdqs</p> 
+								<p class = "auteur">momo</p> 
 
 								<?php 
 
@@ -27,6 +27,10 @@
 							</body>
 
 						</html>
+
+
+
+						
 
 
 							
