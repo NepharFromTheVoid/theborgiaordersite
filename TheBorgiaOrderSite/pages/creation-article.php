@@ -5,10 +5,17 @@
 					// Ne pas modifier le php 
 session_start();
 
+
 if (isset($_SESSION['verif'])== false ) {
 	$_SESSION['verif'] = 0;
 	
 }
+
+
+
+if(isset($_SESSION['connect']) and $_SESSION['connect'] == 1)
+{
+
 
 ?>
 
@@ -77,3 +84,10 @@ $_SESSION['titre'] = NULL;
 
 
  ?>
+
+ <?php 
+
+}
+
+
+  ?>
