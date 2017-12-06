@@ -1,0 +1,62 @@
+html{
+
+background-image:url('ground1.jpg');
+background-position:70% 40%;
+background-repeat:no-repeat;
+background-size: 120%;
+}
+
+
+body
+{
+  
+  margin: 10px 0 ;
+  padding: 0 ;
+  text-align: center ;
+
+
+}
+
+.box{
+background-color:grey;
+border: black solid;
+max-width: 50%;
+margin-top: 10%;
+margin-left: 25%;
+box-shadow: 5px 5px 10px 0px #656565;
+}
+
+.but{
+
+margin-left: 20%; 
+margin-bottom: 6%; 
+
+}
+
+hr{
+	color:black;
+	height: 3px;
+	background-color: black;
+	border: none;
+	margin-bottom: 3%
+
+
+}
+
+label{
+display:inline-block;
+text-align:left;
+width:20%;
+
+
+
+}
+
+input{
+margin-right: 15%;
+margin-bottom: 2%;	
+display:inline-block;
+border:  black solid;
+
+
+}

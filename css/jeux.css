@@ -1,0 +1,22 @@
+body{
+	background-image: url("grey.jpg");
+}
+
+p{
+	color: white;
+}
+
+#batman{
+	display: flex;
+	justify-content: center;
+}
+
+#robin{
+	display: flex;
+	justify-content: center;
+}
+
+#nightwing{
+	display: flex;
+	justify-content: center;
+}

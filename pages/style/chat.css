@@ -1,0 +1,41 @@
+html{
+
+background-image:url('ground1.jpg');
+background-position:70% 40%;
+background-repeat:no-repeat;
+background-size: 120%;
+}
+
+
+.mini-chat{
+	border: black solid;
+	background-color: white;
+	padding-bottom:10%; 
+	margin-left: 10%;
+	margin-top: 5%;
+	margin-right: 10%;
+}
+
+.ecriture{
+	resize:none;
+	width: 75%;
+	margin-left: 10%;
+	float: left;
+}
+
+.lire{
+	margin-top:3%; 
+	resize:none;
+	width: 80%;
+	padding-bottom: 20%;
+	margin-left: 10%;
+
+
+
+}
+
+input{
+	padding-top: 1%;
+	width: 5%;
+	
+}
