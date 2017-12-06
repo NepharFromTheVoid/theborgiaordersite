@@ -26,12 +26,17 @@ if (isset($_POST['validation']) ){
 					 	$CreatioNewsValide = 1;
 
 
+					 		// Recuperation , variable importante
+
+
 						$titre =$_POST['titre'];
 						$auteur = $_POST['auteur'];
 						$texte = $_POST['texte'];
 						$imageb = $_FILES['image']['name'];
 						$_SESSION["titre"] = '"'.$titre;
-														//Ecriture d'un fichier final en php
+
+
+								//Ecriture d'un fichier final en php
 
 
 						$monfichier = fopen('../newsvalide/'.$titre.'.php', 'a');
@@ -63,11 +68,24 @@ if (isset($_POST['validation']) ){
 								<p class = "auteur">'.$auteur.'</p> 
 
 								<?php 
+											// recup in bdd , comantaire .
 
 									echo  "Fait le ".date("d/m/y h:i");    
 									include("traitement_news/inclu_formulaire.php");
 									$bdd = new PDO("mysql:host=127.0.0.1;dbname=borgia;charset=utf8", "root", "");
-									$element = $bdd -> query("SELECT id_news, com, pseudo FROM blog");
+
+									$element = $bdd -> query("SELECT id_news, com, pseudo, date_creation FROM blog WHERE id_news =   \"".$titrepage."\"");
+									while($donne = $element -> fetch() ){
+										
+											
+											include("traitement_news/inclu_commentaire.php");
+
+
+										
+										
+
+
+									} 
 								?>
 
 
@@ -89,7 +107,7 @@ if (isset($_POST['validation']) ){
 						$pseudo = 'volodia';
 
 						// Inscription des donnes dans le bdd
-						
+						// données de la page News inscript in bdd 
 
 					$bdd = new PDO("mysql:host=127.0.0.7;dbname=borgia;charset=utf8",'root','');
 					$element = $bdd -> prepare('INSERT INTO news(pseudo, titre, texte, image, auteur, aj_date) VALUES (?, ?, ?, ?, ?, NOW() )') or die(print_r($bdd->errorInfo()));
