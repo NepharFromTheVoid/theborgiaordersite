@@ -13,7 +13,7 @@ if (isset($_SESSION['verif'])== false ) {
 
 
 
-if(isset($_SESSION['EnLigne']) and $_SESSION['EnLigne'] == 1)
+if(isset($_SESSION['power']) and $_SESSION['power'] > 1 and $_SESSION['power'] != 2 )
 {
 	echo $_SESSION['pseudo'];
 
