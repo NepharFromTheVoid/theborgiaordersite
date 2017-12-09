@@ -1,35 +1,75 @@
 
 <?php 
+		/* Page d'administation , php et html présent sur cette page  
+				NE PAS TOUCHER AU PHP, modification possible pour
+					les partie html, il faut STYLISER */
+		
+
+
+
 session_start();
-
-// affichage pour les administrateur 
-// JwMy47S3x2
-
-if (isset($_POST['fondateur'])  ) {
 	
-	
-
-
-
-}
-
-
-
-
-
-
-
-
 
 
 	// affichage de base . 
 
-if(isset($verif) == false ){
-	$verif = 0; // si 0 affiche la base, 1 affiche espace modo, si 2 admin, si 3 fondateur 
+if(isset($_SESSION['verif']) == false ){
+	$_SESSION['verif'] = 0; // si 0 affiche la base, 1 affiche espace modo, si 2 admin, si 3 fondateur 
+	
+	
 }
-if(isset($_SESSION['power']) and $_SESSION['power'] > 2 and $verif == 0 )
+
+	// verification si l'utilisateur peux acces à la page 
+	
+if(isset($_SESSION['power']) and $_SESSION['power'] > 2 and $_SESSION['verif'] == 0 )
 {
+	echo $_SESSION['verif'] ;
+	
 	// verification
+	
+		// affichage pour les administrateur 
+			// JwMy47S3x2
+		// puissance minimun 5
+		
+		
+	if (isset($_POST['fondateur']) and isset($_POST['motpfondateur']) and  empty($_POST['motpfondateur']) == false   ) {
+		
+			// Verification du mots passe et du rang
+				// protection du mot pass 
+				
+		$mdp =htmlspecialchars($_POST['motpfondateur']);
+		$mdp = sha1($mdp);
+		
+			//connection in bdd pour verification de l'existance du fondateur 
+			
+		$bdd = new PDO('mysql:host=127.0.0.1;dbname=borgia;metacharset=utf8', 'root', '');
+		$element = $bdd -> query('SELECT pseudo, power, mdp FROM adminis WHERE pseudo =\''.$_SESSION["pseudo"].'\'');
+		while($ligne = $element -> fetch())	{
+			if ($mdp == $ligne['mdp']){
+					
+					// if mdp == ok alors refresh et affichage fondateur 
+				echo "fdsfsdf";
+				$_SESSION['verif'] = 1;
+				 header('location:administration.php');
+				
+				
+			}
+			echo $_SESSION['verif'] ;
+			
+			
+			
+			
+		}
+		
+	
+
+
+
+}
+	
+	
+
+	
 	
 
 ?>
@@ -74,12 +114,49 @@ if(isset($_SESSION['power']) and $_SESSION['power'] > 2 and $verif == 0 )
 
 
 
+if($_SESSION['verif'] == 1) {
+
+ ?>
+ 
+ 
+ 
+ 
+ <!DOCTYPE html>
+<html>
+	<head>
+
+	<meta charset="utf-8">
+	<title>Fondateur</title>
+
+	</head>
+
+	<body>
+		<h1> Fondateur </h1>
+
+			<p>La page d'administation pour les fondateurs. Coucou :)</p>
+				
+			<form method="post" action="administration.php" >
+			
+				<label id ="Bannir"> Bannisement </label>
+					<input type= "submit" value="Bannisement !" >
+			
+			</form>
 
 
-else{
-	header('location:../accueil.html');
+	</body>
+</html>
+
+
+
+
+
+ <?php 
+
+ 
+
+ 
+ 
 
 }
-
 
  ?>
