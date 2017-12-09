@@ -3,8 +3,10 @@
 session_start();
 
 // affichage pour les administrateur 
+// JwMy47S3x2
 
-if (isset($_POST['fondateur']) ) {
+if (isset($_POST['fondateur'])  ) {
+	
 	
 
 

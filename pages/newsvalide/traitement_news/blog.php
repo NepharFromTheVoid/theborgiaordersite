@@ -6,7 +6,7 @@ session_start();
 
 	// Verifie sur l'utilisateur et connecter 
 
-if (isset($_SESSION['EnLigne']) == TRUE or $_SESSION['EnLigne'] == 1) {
+if (isset($_SESSION['power']) == TRUE or $_SESSION['power'] >= 1) {
 	
 
 
@@ -14,7 +14,7 @@ if (isset($_SESSION['EnLigne']) == TRUE or $_SESSION['EnLigne'] == 1) {
 
 		// Verifcation de securiter pour com in news
 
-if (isset($_SESSION['EnLigne']) and $_SESSION['EnLigne'] == 1) {
+if (isset($_SESSION['power']) and $_SESSION['power'] >= 1) {
 	
 		// affichage max 1000 caractére
 
