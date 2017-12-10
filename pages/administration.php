@@ -4,24 +4,41 @@
 				NE PAS TOUCHER AU PHP, modification possible pour
 					les partie html, il faut STYLISER */
 		
-
-
-
+// Power : 1 Utilistaeur 
+// Power : 2 Redacteur 
+// Power : 3 Moderateur
+// Power : 4 Administrateur 
+// Power : 5 Fondateur 
 session_start();
+
+$generationMotDePass = "Ayo726KNVO8W74MOondak958452rzdsKDFIJDSGGERpok744";
 	
 
 
 	// affichage de base . 
-
+$verifco = 1;
 if(isset($_SESSION['verif']) == false ){
 	$_SESSION['verif'] = 0; // si 0 affiche la base, 1 affiche espace modo, si 2 admin, si 3 fondateur 
+	
 	
 	
 }
 
 	// verification si l'utilisateur peux acces à la page 
+if(isset($_SESSION['pseudo']) != 1) {
 	
-if(isset($_SESSION['power']) and $_SESSION['power'] > 2 and $_SESSION['verif'] == 0 )
+		// l'utilisateur est pas connecter donc redirigez sur connection 
+	header('location:connect.php');	
+	$verifco = 0;
+}
+
+if($_SESSION['power'] <= 1  and $verifco ==  1 ){
+	header('location:../accueil.html');	
+	
+	
+}
+	
+if(isset($_SESSION['power']) and $_SESSION['power'] > 1 and $_SESSION['verif'] == 0 )
 {
 	echo $_SESSION['verif'] ;
 	
@@ -45,7 +62,7 @@ if(isset($_SESSION['power']) and $_SESSION['power'] > 2 and $_SESSION['verif'] =
 		$bdd = new PDO('mysql:host=127.0.0.1;dbname=borgia;metacharset=utf8', 'root', '');
 		$element = $bdd -> query('SELECT pseudo, power, mdp FROM adminis WHERE pseudo =\''.$_SESSION["pseudo"].'\'');
 		while($ligne = $element -> fetch())	{
-			if ($mdp == $ligne['mdp']){
+			if ($mdp == $ligne['mdp'] and  5 == $ligne['power']){
 					
 					// if mdp == ok alors refresh et affichage fondateur 
 				echo "fdsfsdf";
@@ -114,6 +131,8 @@ if(isset($_SESSION['power']) and $_SESSION['power'] > 2 and $_SESSION['verif'] =
 
 
 
+
+
 if($_SESSION['verif'] == 1) {
 
  ?>
@@ -136,9 +155,28 @@ if($_SESSION['verif'] == 1) {
 			<p>La page d'administation pour les fondateurs. Coucou :)</p>
 				
 			<form method="post" action="administration.php" >
-			
+							<!-- Bannisement -->
+							
 				<label id ="Bannir"> Bannisement </label>
-					<input type= "submit" value="Bannisement !" >
+					<input type ="text" placeholder="pseudo" name="pseudoBanni">
+				<label id="raison ">Les raisons ?</label>
+					<textarea for= "raison" name ="raison"></textarea>
+					<input type= "submit" value="Bannisement !" name = "subbanni" >
+				<br>
+				<br>
+				<br>
+				
+								<!-- PROMOTION -->
+								
+				<label id ="promotion"> Promotion</label>
+					<input type ="text" placeholder="pseudo" name="pseudoPromo">
+							<label for="redacteur"> Redacteur </label>
+						<input type ="radio" name="promotion" value ="redacteur" id="redacteur"> 
+							<label for = "moderateur"> Moderateur </label>
+						<input type ="radio" name="promotion" value ="moderateur" id="moderateur">
+							<label for="administrateur"> Administrateur </label>
+						<input type = "radio" name="promotion" value = "administrateur" id="administrateur">
+						<input type = "submit" name ="butpromo" value="Promotion !"> 
 			
 			</form>
 
@@ -147,13 +185,98 @@ if($_SESSION['verif'] == 1) {
 </html>
 
 
-
-
-
  <?php 
 
+ // gestion du bannisement 
  
+	// verification des champs 
+ if(isset($_POST['subbanni'])){
+	if(isset($_POST['pseudoBanni']) and isset($_POST['raison'])) {
+		if(empty($_POST['pseudoBanni']) == false and empty($_POST['raison']) == false ){
+			 // verification de l'existance de l'utilisateur dans le bdd 
+			 $verifBanni = 0 ;
+			 $bdd = new PDO ('mysql:host=127.0.0.1;dbname=borgia;metacharset=utf8','root', '');
+			 $recherche = $bdd -> query('SELECT * FROM compte WHERE pseudo = \''.$_POST['pseudoBanni'].'\'	');
+			 while($donne = $recherche -> fetch()){
+				 if($donne['pseudo'] == $_POST['pseudoBanni']) {
+					 
+					 $verifBanni = 1 ;
+					 
+				 }
+				 
+				 
+				 
+			 }
+			 
 
+			
+			if($verifBanni == 1) {
+			
+				$element = $bdd -> exec('UPDATE compte SET power = 0 WHERE pseudo = \''.$_POST['pseudoBanni'].'\'');
+				echo "l'utilisateur ".$_POST['pseudoBanni']." a était banni";
+			}
+			
+			if($verifBanni == 0) {
+				
+				echo "L'utilisateur n'a pas était trouver dans la basse de donnée ";
+				
+				
+			}
+			
+			
+			
+		
+
+		
+		}
+	}
+ }
+ 
+	// Gestion de la promotion 
+	
+if(isset($_POST['butpromo'])){
+	
+	if (isset($_POST['promotion']) and isset($_POST['pseudoPromo']) and empty($_POST['pseudoPromo']) == false ) {
+		
+		$verifpromo = 0 ;
+	
+		$bdd = new PDO('mysql:host=127.0.0.1;dbname=borgia;metacharset=utf8', 'root', '');
+		$try = $bdd -> query('SELECT * FROM compte WHERE pseudo = \''.$_POST['pseudoPromo'].'\'');
+		$recup = $try -> fetch();
+		if($recup['pseudo'] == $_POST['pseudoPromo']){
+			
+			$verifpromo = 1;
+			$MotDePass = str_shuffle($generationMotDePass);
+			$MotDePass = substr($MotDePass,0,18);
+			echo $MotDePass ;
+			
+		}
+		
+		if($verifpromo == 0){
+			
+			echo "L'utilisateur ".$_POST['pseudoPromo']." N'a pas était trouvé"; 
+			
+			
+		}
+		
+			
+			
+			
+		
+		
+	}
+	
+	
+	
+}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
 
