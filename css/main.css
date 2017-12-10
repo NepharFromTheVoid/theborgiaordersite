@@ -28,17 +28,32 @@ a:visited {
 
 
 #nav {
-	margin-left: 2.85%;
-	float: left;
+}
+
+.floating-box {
+	padding: 0;
+	margin: 0;
+	position: fixed;
+	height: 10%;
+	width: 99.7%;
+	color: yellow;
+	background-color: #5f5f5f;
+	border-style: double;
+	border-color: black;
+	border-width: 5px;
+	border-top-style: none;
+	border-left-style: none;
 }
 
 .navbar-right {
 	overflow: hidden;
 	background-color: #333;
-	margin-top: 4.1%;
+	margin-top: 4%;
 	text-align: left;
 	font-size: 1.7em;
 	border-bottom-right-radius: 60px;
+	margin-left: 13.8%;
+	position: fixed;
 }
 
 .navbar-right a.accueil {
@@ -61,7 +76,7 @@ a:visited {
 .corp {
 	/*Ceci est pour le coeur de page*/
 	margin-top: 0;
-	padding-top: 12%;
+	padding-top: 10%;
 	margin-left: 16%;
 	margin-right: 16%;
 	margin-bottom: auto;
@@ -73,26 +88,10 @@ a:visited {
 	min-width: 600px;
 }
 
-.floating-box {
-	padding: 0;
-	margin: 0;
-	position: fixed;
-	height: 10%;
-	width: 99.7%;
-	color: yellow;
-	background-color: #5f5f5f;
-	border-style: double;
-	border-color: black;
-	border-width: 5px;
-	border-top-style: none;
-	border-left-style: none;
-}
-
 .box {
 	text-align: left;
-	width: 14%;
-	height: 210px;
-	margin-top: 1.9%;
+	width: 13.5%;
+	height: 40%;
 	padding: 0;
 	color: yellow;
 	background-color: #5f5f5f;
@@ -102,20 +101,26 @@ a:visited {
 	border-width: 5px;
 	border-top-style: none;
 	border-left-style: none;
+	position: fixed;
+	margin-top: 3.8%;
+	z-index: 2;
 }
 
 .navbar-left {
-	margin: 0px;
+	margin: 0%;
 	padding: 0.5%;
 	text-align: left;
 	font-size: 2em;
+	position: fixed;
 }
 
 .logo {
 	max-height: 271px;
 	max-width: 158px;
-	margin: 0.6em;
+	background-color: #5f5f5f;
 	float: left;
+	position: fixed;
+	z-index: 3;
 }
 
 
