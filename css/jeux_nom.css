@@ -1,0 +1,16 @@
+body{
+	background-image: url("grey.jpg");
+}
+
+p{
+  color: white;
+}
+
+#Corps{
+  border-style: solid;
+  border-color: red;
+  border-width: 2%;
+  position: absolute;
+  top: 10%;
+  left: 4%;
+}
