@@ -10,7 +10,8 @@
 // Power : 4 Administrateur 
 // Power : 5 Fondateur 
 session_start();
-
+					
+					// chaine de caractére pour creation de mots de passe 
 $generationMotDePass = "Ayo726KNVO8W74MOondak958452rzdsKDFIJDSGGERpok744";
 	
 
@@ -32,6 +33,7 @@ if(isset($_SESSION['pseudo']) != 1) {
 	$verifco = 0;
 }
 
+	// si l'utilisateur n'as pas le power redirection vers la gage d'acceuil 
 if($_SESSION['power'] <= 1  and $verifco ==  1 ){
 	header('location:../accueil.html');	
 	
@@ -92,6 +94,9 @@ if(isset($_SESSION['power']) and $_SESSION['power'] > 1 and $_SESSION['verif'] =
 ?>
 
 <!DOCTYPE html>
+
+	<!-- Page d'accueil pour le staff -->
+
 <html>
 	<head>
 
@@ -142,6 +147,9 @@ if($_SESSION['verif'] == 1) {
  
  <!DOCTYPE html>
 <html>
+
+	<!-- Affichage pour les fondateur  -->
+
 	<head>
 
 	<meta charset="utf-8">
@@ -170,12 +178,14 @@ if($_SESSION['verif'] == 1) {
 								
 				<label id ="promotion"> Promotion</label>
 					<input type ="text" placeholder="pseudo" name="pseudoPromo">
+							<label for="utilisateur"> Utilisateur </label>
+						<input type ="radio" name="promotion" value ="1" id="utilisateur"> 
 							<label for="redacteur"> Redacteur </label>
-						<input type ="radio" name="promotion" value ="redacteur" id="redacteur"> 
+						<input type ="radio" name="promotion" value ="2" id="redacteur"> 
 							<label for = "moderateur"> Moderateur </label>
-						<input type ="radio" name="promotion" value ="moderateur" id="moderateur">
+						<input type ="radio" name="promotion" value ="3" id="moderateur">
 							<label for="administrateur"> Administrateur </label>
-						<input type = "radio" name="promotion" value = "administrateur" id="administrateur">
+						<input type = "radio" name="promotion" value = "4" id="administrateur">
 						<input type = "submit" name ="butpromo" value="Promotion !"> 
 			
 			</form>
@@ -193,6 +203,7 @@ if($_SESSION['verif'] == 1) {
  if(isset($_POST['subbanni'])){
 	if(isset($_POST['pseudoBanni']) and isset($_POST['raison'])) {
 		if(empty($_POST['pseudoBanni']) == false and empty($_POST['raison']) == false ){
+			
 			 // verification de l'existance de l'utilisateur dans le bdd 
 			 $verifBanni = 0 ;
 			 $bdd = new PDO ('mysql:host=127.0.0.1;dbname=borgia;metacharset=utf8','root', '');
@@ -207,7 +218,7 @@ if($_SESSION['verif'] == 1) {
 				 
 				 
 			 }
-			 
+			
 
 			
 			if($verifBanni == 1) {
@@ -216,12 +227,31 @@ if($_SESSION['verif'] == 1) {
 				echo "l'utilisateur ".$_POST['pseudoBanni']." a était banni";
 			}
 			
+			 // si banni alors power 0 
+			
 			if($verifBanni == 0) {
 				
 				echo "L'utilisateur n'a pas était trouver dans la basse de donnée ";
 				
 				
 			}
+			
+			// verifcation si l'utilisateur et in staff 
+			
+			$recherche = $bdd -> query('SELECT * FROM adminis  WHERE pseudo = \''.$_POST['pseudoBanni'].'\'	');
+				$donne = $recherche -> fetch();
+				
+				if($donne['pseudo'] == $_POST['pseudoBanni']) {
+					 
+					 $bdd -> exec('DELETE FROM adminis WHERE pseudo = \''.$_POST['pseudoBanni'].'\' ');
+					 
+					 
+				 }
+				 
+				 
+				 
+			 
+			
 			
 			
 			
@@ -246,10 +276,17 @@ if(isset($_POST['butpromo'])){
 		if($recup['pseudo'] == $_POST['pseudoPromo']){
 			
 			$verifpromo = 1;
-			$MotDePass = str_shuffle($generationMotDePass);
-			$MotDePass = substr($MotDePass,0,18);
-			echo $MotDePass ;
 			
+			
+		}
+		
+		$try -> closeCursor();
+		
+		if ($verifpromo == 1){
+			
+			$changePower = $bdd -> exec('UPDATE compte SET power = \''.$_POST['promotion'].'\' WHERE pseudo = \''.$_POST['pseudoPromo'].'\'');
+			echo  $_POST['pseudoPromo']." à une puissance de niveau ".$_POST['promotion'];
+			$verifpromo = 2 ; 
 		}
 		
 		if($verifpromo == 0){
@@ -258,6 +295,52 @@ if(isset($_POST['butpromo'])){
 			
 			
 		}
+		
+		if($verifpromo == 2 ){
+				// inscription dans la table adminis ou modification si exsite deja 
+				
+			$recherche = $bdd -> query ('SELECT * FROM adminis');
+			while($trouve = $recherche -> fetch() ){
+						
+						// si inscrit alors update de la table 
+						
+				if ($trouve['pseudo'] == $_POST['pseudoPromo'] ) {
+					
+					if ($_POST['promotion'] != 1){
+					$changePower = $bdd -> exec('UPDATE adminis SET power = \''.$_POST['promotion'].'\' WHERE pseudo = \''.$_POST['pseudoPromo'].'\'');
+					$verifpromo = 3 ;
+						
+					}
+							// alors c'est une retrogation en utilsateur donc supprimer in bdd 
+					else {
+					  $bdd -> exec('DELETE FROM adminis WHERE pseudo = \''.$_POST['pseudoPromo'].'\' ');
+						$verifpromo = -1;
+						
+					}
+					
+				}
+				
+				
+				
+				
+			}
+			
+			if ($verifpromo == 2) {
+				
+				$crea = $bdd -> prepare('INSERT INTO adminis(pseudo, power, mdp) VALUES(?,?,?)');
+				$MotDePass = str_shuffle($generationMotDePass);
+				$MotDePass = substr($MotDePass,0,18);
+				echo $MotDePass;
+				$MotDePass = sha1($MotDePass);
+				$crea -> execute(array($_POST['pseudoPromo'],$_POST['promotion'],$MotDePass));
+				
+				
+			}
+			
+			
+		}
+		
+		
 		
 			
 			
