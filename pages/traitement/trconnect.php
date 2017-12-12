@@ -29,7 +29,7 @@ if($verif != 1 ){
 
  else{
 
- 	header('location:../newsvalide/test.php');
+ 	header('location:../../accueil');
  	
 	
 

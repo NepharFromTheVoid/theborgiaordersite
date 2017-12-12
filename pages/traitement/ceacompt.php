@@ -67,7 +67,7 @@ $verif = 1;
 								// Inscription dans bdd
 						if ($verif != 0){
 						$req = $bdd -> prepare('INSERT INTO compte(mail, pseudo, pass) VALUES (:mail, :pseudo, :pass)' );
-						echo "string";
+						header('Location:../connect.php');
 						$req  -> execute(array(
 
 							'mail'=> $TonEmail ,

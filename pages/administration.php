@@ -10,6 +10,7 @@
 // Power : 4 Administrateur 
 // Power : 5 Fondateur 
 session_start();
+$temps = time();
 					
 					// chaine de caractére pour creation de mots de passe 
 $generationMotDePass = "Ayo726KNVO8W74MOondak958452rzdsKDFIJDSGGERpok744";
@@ -140,6 +141,8 @@ if(isset($_SESSION['power']) and $_SESSION['power'] > 1 and $_SESSION['verif'] =
 
 if($_SESSION['verif'] == 1) {
 
+echo $temps;
+
  ?>
  
  
@@ -192,8 +195,6 @@ if($_SESSION['verif'] == 1) {
 
 
 	</body>
-</html>
-
 
  <?php 
 
@@ -254,9 +255,9 @@ if($_SESSION['verif'] == 1) {
 			
 			
 			
-			
 		
-
+		
+			
 		
 		}
 	}
@@ -361,8 +362,9 @@ if(isset($_POST['butpromo'])){
  
  
  
- 
 
 }
+
+
 
  ?>
