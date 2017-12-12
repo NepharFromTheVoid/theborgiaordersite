@@ -48,11 +48,11 @@ a:visited {
 .navbar-right {
 	overflow: hidden;
 	background-color: #333;
-	margin-top: 4.4%;
+	margin-top: 4%;
 	text-align: left;
 	font-size: 1.7em;
 	border-bottom-right-radius: 60px;
-	margin-left: 13.7%;
+	margin-left: 13.8%;
 	position: fixed;
 }
 
@@ -102,7 +102,7 @@ a:visited {
 	border-top-style: none;
 	border-left-style: none;
 	position: fixed;
-	margin-top: 4.19%;
+	margin-top: 3.8%;
 	z-index: 2;
 }
 
@@ -112,21 +112,16 @@ a:visited {
 	text-align: left;
 	font-size: 2em;
 	position: fixed;
-	margin-left: 15%;
 }
 
 .logo {
-	margin: 0;
-	padding: 0;
-	width: 10%;
-	height: 35%;
+	max-height: 271px;
+	max-width: 158px;
 	background-color: #5f5f5f;
 	float: left;
 	position: fixed;
 	z-index: 3;
 }
-
-
 
 
 /*Fin du menue nav*/
