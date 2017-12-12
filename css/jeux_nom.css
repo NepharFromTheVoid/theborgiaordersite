@@ -4,13 +4,29 @@ body{
 
 p{
   color: white;
+	font-family: "Destiny" ,sans-serif;
 }
 
 #Corps{
-  border-style: solid;
-  border-color: red;
-  border-width: 2%;
   position: absolute;
   top: 10%;
   left: 4%;
+	margin-right: 5%;
+}
+
+img{
+	border-style: solid;
+  border-color: white;
+  border-width: 2%;
+}
+
+.Text{
+	position: absolute;
+	top: 10%;
+	left: 25%;
+}
+
+@font-face {
+	font-family: "Destiny";
+	src: url('Destiny.ttf') format(truetype);
 }
