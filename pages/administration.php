@@ -10,7 +10,7 @@
 // Power : 4 Administrateur 
 // Power : 5 Fondateur 
 session_start();
-$temps = time();
+$temps = time();	
 					
 					// chaine de caractére pour creation de mots de passe 
 $generationMotDePass = "Ayo726KNVO8W74MOondak958452rzdsKDFIJDSGGERpok744";
