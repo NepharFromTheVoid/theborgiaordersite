@@ -1,16 +1,44 @@
 body{
-	background-image: url("grey.jpg");
-}
-
-p{
-  color: white;
+	background-image: url("../img/grey.jpg");
 }
 
 #Corps{
-  border-style: solid;
-  border-color: red;
-  border-width: 2%;
   position: absolute;
-  top: 10%;
-  left: 4%;
+  margin-top: 5%;
+  margin-left: 4%;
+	margin-right: 5%;
+}
+
+img{
+	border-style: solid;
+  border-color: white;
+  border-width: 2%;
+}
+
+.Text{
+	color: white;
+	font-family: "Destiny" ,sans-serif;
+}
+
+@font-face {
+	font-family: "Destiny";
+	src: url('Destiny.ttf') format(truetype);
+}
+
+#Details{
+		position: absolute;
+		padding-top: 5%;
+		padding-left: 25%;
+}
+
+#Syno{
+		position: absolute;
+		padding-top: 25%;
+		padding-left: 4%;
+}
+
+#News{
+	position: absolute;
+	padding-top: 35%;
+	padding-left: 4%;
 }
